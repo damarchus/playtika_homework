@@ -1,35 +1,19 @@
 import {Fragment, useRef, useState} from "react";
 import {Button, TextField} from "@mui/material";
+import {validateName, ValidationResult} from "../utils/ValidationUtils";
 
 const RegisterSection = ({setFirstName, setLastName, canRegister}) => {
-    const nameShortError = <li key={1}>Name should be 2 symbols or longer</li>
-    const nameDigitError = <li key={2}>Name should not contain digits(yes, Elon, it shouldn't)</li>
-
-    const[fnError, setFnError] = useState({isError: false, errorText: <></>});
-    const[lnError, setLnError] = useState({isError: false, errorText: <></>});
-
-    const containsDigit = (str) => /[0-9]/i.test(str);
+    const[fnError, setFnError] = useState(new ValidationResult());
+    const[lnError, setLnError] = useState(new ValidationResult());
 
     const ageInput = useRef();
 
     const inputName = (event, handler, errorHandler) => {
         const name: String = event.target.value;
-        let errors: Element[] = [];
+        const validationResult = validateName(name);
 
-        if (name.length < 2) {
-            errors.push(nameShortError);
-        }
-        if (containsDigit(name)) {
-            errors.push(nameDigitError);
-        }
-
-        if (errors.length === 0) {
-            errorHandler({isError: false, errorText: <></>});
-            handler(name);
-        } else {
-            errorHandler({isError: true, errorText: errors});
-            handler('');
-        }
+        errorHandler(validationResult);
+        handler(validationResult.isError ? '' : name);
     }
 
     const inputFirstName = (event) => {
@@ -51,14 +35,14 @@ const RegisterSection = ({setFirstName, setLastName, canRegister}) => {
         <Fragment>
             <TextField sx={{my: 0.5}}
                        error={fnError.isError}
-                       helperText={fnError.errorText}
+                       helperText={fnError.errorDetails}
                        type='text'
                        size='small'
                        label='First Name'
                        onChange={inputFirstName}/>
             <TextField sx={{my: 0.5}}
                        error={lnError.isError}
-                       helperText={lnError.errorText}
+                       helperText={lnError.errorDetails}
                        type='text'
                        size='small'
                        label='Last Name'
