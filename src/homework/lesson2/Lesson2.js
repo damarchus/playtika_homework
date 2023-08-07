@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {useState} from "react";
 
 const Lesson2 = () => {
     const [user, setUser] = useState(
@@ -11,14 +11,11 @@ const Lesson2 = () => {
     }
 
     return(
-        <div className='lesson'>
-            {isHidden
-                ? null
-                : <Fragment>
-                    <p>Name: {user.name}, age: {user.age}</p>
-                    <button onClick={() => changeUser()}>Change user</button>
-                  </Fragment>
-            }
+        <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center'}}>
+            <div style={{visibility: isHidden ? 'hidden' : 'visible', padding: 10}}>
+                <p>Name: {user.name}, age: {user.age}</p>
+                <button onClick={() => changeUser()}>Change user</button>
+            </div>
             <button onClick={() => changeHiddenState(!isHidden)}>{isHidden ? 'Show' : 'Hide'}</button>
         </div>
     );

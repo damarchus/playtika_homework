@@ -22,7 +22,7 @@ const Lesson4 = () => {
     }, [email, password, firstName, lastName])
 
     return(
-        <Card elevation={6} sx={{width: 400, p: 2, m: 2}}>
+        <Card className="outlet" elevation={6} sx={{width: 400, p: 2, m: 2}}>
             <FormControl fullWidth>
                 <LoginSection setEmail={setEmail} setPassword={setPassword}/>
                 <ButtonGroup sx={{mx: 'auto', my: 1}}>

@@ -1,4 +1,4 @@
-import {Avatar, Card, CardContent, CardHeader, IconButton, ListItem, Tooltip, Typography} from "@mui/material";
+import {Avatar, Card, CardContent, CardHeader, IconButton, Tooltip, Typography} from "@mui/material";
 import React, {Fragment} from "react";
 import {EditNote} from '@mui/icons-material';
 import {red} from "@mui/material/colors";
@@ -11,8 +11,8 @@ const Post = ({post, user, setEditPost, setEditDialogOpen}) => {
     }
 
     return(
-            <ListItem >
-                <Card sx={{p: 1, m: 1, width: '100%'}} elevation={6}>
+            <li>
+                <Card sx={{mx: 'auto', my: 1, width: '90%'}} elevation={6}>
                     <CardHeader
                         avatar={
                             <Tooltip title={user.name} placement="left" arrow>
@@ -41,7 +41,7 @@ const Post = ({post, user, setEditPost, setEditDialogOpen}) => {
                         >{post.body}</Typography>
                     </CardContent>
                 </Card>
-            </ListItem>
+            </li>
     )
 }
 

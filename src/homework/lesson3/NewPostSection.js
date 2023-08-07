@@ -31,7 +31,7 @@ const NewPostSection = ({loading, users, setStatus, setStatusMessage, setSnackba
     };
 
     return(
-        <FormControl fullWidth>
+        <FormControl sx={{height: 250, width: '90%', mx: 'auto'}}>
             { loading
                 ? <Skeleton sx={{m: 0.5, width: 0.3}} variant='rounded' />
                 : <Fragment>

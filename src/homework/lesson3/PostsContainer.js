@@ -1,4 +1,4 @@
-import {Container, Divider, List, Skeleton} from "@mui/material";
+import {Divider, Skeleton} from "@mui/material";
 import React, {useState} from "react";
 import Post from "./Post";
 import EditDialog from "./EditDialog";
@@ -13,17 +13,19 @@ const PostsContainer = ({posts, users, loading}) => {
     const[editPost, setEditPost] = useState({post: {}, username: ''});
 
     return(
-        <Container sx={{height: '90vh'}}>
-            { loading
-                ? <Skeleton variant='rounded' sx={{height: '80%'}} />
-                : <List sx={{overflow: 'hidden', overflowY: 'scroll', height: '80%'}}>
-                    {posts.map(post => {
-                        let user = users.find(usr => usr.id === post.userId);
-                        return(
-                            <Post key={post.id} post={post} user={user} setEditPost={setEditPost} setEditDialogOpen={setEditDialogOpen}/>
-                        );
-                    })}
-                  </List> }
+        <div className="postsContainer">
+            <div className="postsListContainer">
+                { loading
+                    ? <Skeleton variant='rounded' />
+                    : <ul className="postsList">
+                        {posts.map(post => {
+                            let user = users.find(usr => usr.id === post.userId);
+                            return(
+                                <Post key={post.id} post={post} user={user} setEditPost={setEditPost} setEditDialogOpen={setEditDialogOpen}/>
+                            );
+                        })}
+                    </ul> }
+            </div>
             <Divider variant="inset" sx={{m: 2}}/>
             <NewPostSection
                 loading={loading}
@@ -48,7 +50,8 @@ const PostsContainer = ({posts, users, loading}) => {
                 open={updateSnackbarOpen}
                 setOpen={setUpdateSnackbarOpen}
             />
-        </Container>
+        </div>
+
     )
 }
 
