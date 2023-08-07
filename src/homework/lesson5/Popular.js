@@ -8,6 +8,7 @@ const languages = ['All', 'Java', 'Javascript', 'Ruby', 'Python', 'CSS'];
 const Popular = () => {
     const[searchParams, setSearchParams] = useSearchParams();
     const[activeLanguage, setActiveLanguage] = useState(searchParams.lang || languages[0]);
+    const[loading, setLoading] = useState(true);
 
     const setLanguage = (language) => {
         setActiveLanguage(language);
@@ -16,8 +17,8 @@ const Popular = () => {
 
     return(
         <div className="popular">
-            <PopularTabs languages={languages} activeLanguage={activeLanguage} setLanguage={setLanguage}/>
-            <PopularContainer language={activeLanguage} />
+            <PopularTabs languages={languages} activeLanguage={activeLanguage} setLanguage={setLanguage} loading={loading}/>
+            <PopularContainer language={activeLanguage} loading={loading} setLoading={setLoading} />
         </div>
     );
 }

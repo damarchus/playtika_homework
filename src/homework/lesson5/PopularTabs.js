@@ -1,4 +1,4 @@
-const PopularTabs = ({languages, activeLanguage, setLanguage}) => {
+const PopularTabs = ({languages, activeLanguage, setLanguage, loading}) => {
 
     return(
         <ul className='languages'>
@@ -6,7 +6,11 @@ const PopularTabs = ({languages, activeLanguage, setLanguage}) => {
                 <li
                     key={index}
                     className={activeLanguage === language ? 'language selected' : 'language'}
-                    onClick={() => setLanguage(language)}
+                    onClick={() => {
+                        if(!loading) {
+                            setLanguage(language)
+                        }
+                    }}
                 >{language}</li>
             )}
         </ul>

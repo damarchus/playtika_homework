@@ -3,12 +3,11 @@ import {CircularProgress, Pagination} from "@mui/material";
 import {fetchPopularRepos} from "../utils/JsonUtils";
 import PopularList from "./PopularList";
 
-const PopularContainer = ({language}) => {
+const PopularContainer = ({language, loading, setLoading}) => {
     const pageSize = 20;
     // Search response in github is limited to 1000 hits - https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#about-search
     const maxResultSize = 1000;
 
-    const[loading, setLoading] = useState(true);
     const[pageCount, setPageCount] = useState(0);
     const[page, setPage] = useState(1);
     const[repos, setRepos] = useState([]);
@@ -24,7 +23,7 @@ const PopularContainer = ({language}) => {
             })
             .catch(() => alert("Secondary limit of calls achieved. Please retry in couple of minutes"))
             .finally(() => setLoading(false));
-    }, [language, page]);
+    }, [language, page, setLoading]);
 
     const handlePagination = (event, pageNumber) => {
         setPage(pageNumber);
