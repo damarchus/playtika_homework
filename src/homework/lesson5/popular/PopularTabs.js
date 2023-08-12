@@ -1,7 +1,6 @@
 const PopularTabs = ({languages, activeLanguage, setLanguage, loading}) => {
-
     return(
-        <ul className='languages'>
+        <ul className='languages nonDecorated'>
             {languages.map((language, index) =>
                 <li
                     key={index}

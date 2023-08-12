@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {CircularProgress, Pagination} from "@mui/material";
-import {fetchPopularRepos} from "../utils/JsonUtils";
 import PopularList from "./PopularList";
+import {fetchPopularRepos} from "../../utils/GithubApi";
 
 const PopularContainer = ({language, loading, setLoading}) => {
     const pageSize = 20;
@@ -21,7 +21,6 @@ const PopularContainer = ({language, loading, setLoading}) => {
                 setPageCount(Math.ceil(Math.min(response.total_count, maxResultSize)/pageSize));
                 setRepos(response.items);
             })
-            .catch(() => alert("Secondary limit of calls achieved. Please retry in couple of minutes"))
             .finally(() => setLoading(false));
     }, [language, page, setLoading]);
 

@@ -7,6 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.nonDecorated {
+  list-style-type: none;
+  padding: 0;
+}
+
 .leftSideMenu {
   height: 100vh;
   padding: 5px;
@@ -66,11 +71,6 @@ body {
   overflow-y: scroll;
 }
 
-.postsList {
-  list-style-type: none;
-  padding: 0;
-}
-
 .navCardContainer {
   margin: 10px;
 }
@@ -87,8 +87,6 @@ body {
 .languages {
   display: flex;
   justify-content: center;
-  list-style-type: none;
-  padding: 0;
 }
 
 .language {
@@ -139,7 +137,7 @@ body {
 .repoCard {
   width: 17%;
   margin: 10px;
-  padding:10px;
+  padding: 10px;
   border: solid 1px #282c34;
   border-radius: 5px;
   box-shadow: 0 3px 3px -2px rgba(0,0,0,0.2), 0 3px 4px 0 rgba(0,0,0,0.14), 0 1px 8px 0 rgba(0,0,0,0.12);
@@ -149,14 +147,27 @@ body {
   display: flex;
 }
 
-.repoCardAvatar {
-  width: 60px;
-  height: 60px;
+.cardAvatar {
+  position: relative;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.repoCardAvatar img {
+.cardAvatar.small {
+  width: 60px;
+  height: 60px;
+}
+
+.cardAvatar.medium {
+  width: 120px;
+  height: 120px;
+}
+
+.cardAvatar.centered {
+  align-self: center;
+}
+
+.cardAvatar img {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -185,9 +196,56 @@ body {
 }
 
 .repoCardText {
-  list-style-type: none;
   margin: 5px;
-  padding: 0;
   font-size: 14px;
   text-align: center;
+}
+
+.battle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+}
+
+.battleHeader {
+  width: 100%;
+  text-align: center;
+}
+
+.battleCardRow {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.battleCard {
+  width: 25%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+  border: solid 1px #282c34;
+  border-radius: 5px;
+  box-shadow: 0 3px 3px -2px rgba(0,0,0,0.2), 0 3px 4px 0 rgba(0,0,0,0.14), 0 1px 8px 0 rgba(0,0,0,0.12);
+}
+
+.battleCard .result {
+  width: 35%;
+}
+
+.battleButton {
+  width: 25%;
+  align-self: center;
+  text-decoration: none;
+}
+
+.statusBg {
+  position: absolute;
+  background-image: url("winner_bg.png");
+  background-size: cover;
+  z-index: 999;
 }

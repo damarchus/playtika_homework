@@ -17,7 +17,7 @@ const PostsContainer = ({posts, users, loading}) => {
             <div className="postsListContainer">
                 { loading
                     ? <Skeleton variant='rounded' />
-                    : <ul className="postsList">
+                    : <ul className="nonDecorated">
                         {posts.map(post => {
                             let user = users.find(usr => usr.id === post.userId);
                             return(

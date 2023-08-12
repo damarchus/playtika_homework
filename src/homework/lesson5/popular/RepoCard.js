@@ -4,7 +4,7 @@ const RepoCard = ({repo, rank}) => {
     return(
         <div className="repoCard">
             <div className="repoCardHeader">
-                <div className="repoCardAvatar">
+                <div className="cardAvatar small">
                     <img src={repo.owner.avatar_url} alt={repo.owner.login}/>
                 </div>
                 <div className="repoCardHeaderText">
@@ -13,7 +13,7 @@ const RepoCard = ({repo, rank}) => {
                 </div>
             </div>
             <div className="repoCardBody">
-                <ul className="repoCardText">
+                <ul className="repoCardText nonDecorated">
                     <li>Author: <a href={repo.owner.html_url} target="_blank" rel="noreferrer">@{repo.owner.login}</a></li>
                     <li>Rating: {repo.stargazers_count} stars</li>
                 </ul>

@@ -6,8 +6,9 @@ import Lesson4 from './homework/lesson4/Lesson4';
 import Lesson5 from './homework/lesson5/Lesson5';
 import Layout from "./homework/layout/Layout";
 import InitialState from "./homework/layout/InitialState";
-import Popular from "./homework/lesson5/Popular";
-import Battle from "./homework/lesson5/Battle";
+import Popular from "./homework/lesson5/popular/Popular";
+import Battle from "./homework/lesson5/battle/Battle";
+import Result from "./homework/lesson5/battle/Result";
 
 const router = createBrowserRouter([{
         path: "/",
@@ -40,6 +41,10 @@ const router = createBrowserRouter([{
             {
                 path: "/lesson5/battle",
                 element: <Battle />,
+            },
+            {
+                path: "/lesson5/battle/result",
+                element: <Result />,
             },
             {
                 path: "*",
