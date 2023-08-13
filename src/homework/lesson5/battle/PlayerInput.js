@@ -2,15 +2,22 @@ import {memo, useState} from "react";
 import {Button, Input, InputLabel} from "@mui/material";
 import {Form} from "react-router-dom";
 import {fetchUserInfo} from "../../utils/GithubApi";
+import {useDispatch} from "react-redux";
+import {setUserData} from "../../redux/battle/actions";
 
-export const PlayerInput = memo(({index, playerHandler}) => {
+export const PlayerInput = memo(({index}) => {
+    const dispatch = useDispatch();
+
     const[playerName, setPlayerName] = useState('');
 
     const submitName = (event) => {
         event.preventDefault();
         fetchUserInfo(playerName)
-            .then(data => playerHandler(index, data.login, data.avatar_url))
-            .catch(console.log)
+            .then(data => {
+                if(data) {
+                    dispatch(setUserData(index, data.login, data.avatar_url));
+                }
+            })
     }
 
     return(

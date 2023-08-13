@@ -2,7 +2,6 @@ import {NavLink} from "react-router-dom";
 import LeftSideMenuItem from "./LeftSideMenuItem";
 
 const menuItems = [
-    {id: 0, url: "/", text: "Home"},
     {id: 1, url: "/lesson2", text: "Lesson 2"},
     {id: 2, url: "/lesson3", text: "Lesson 3"},
     {id: 3, url: "/lesson4", text: "Lesson 4"},

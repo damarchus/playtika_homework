@@ -13,14 +13,12 @@ export const fetchPopularRepos = (language, pageSize, page) => {
 }
 
 export const fetchUserInfo = (userName) => {
-    console.log('user_info', userName)
     const uri = window.encodeURI(`https://api.github.com/users/${userName}`);
     return getJson(uri)
         .catch(error => handleError(error, () => alert(`No user with name ${userName} found on GitHub`)));
 }
 
 export const fetchUserRepos = (userName) => {
-    console.log('user_repos', userName)
     const uri = window.encodeURI(`https://api.github.com/users/${userName}/repos`);
     return getJson(uri)
         .catch(error => handleError(error, () => alert(`No user with name ${userName} found on GitHub`)));
@@ -39,7 +37,7 @@ const getUserData = (userName) => {
         fetchUserInfo(userName),
         fetchUserRepos(userName)
     ]).then(([profile, repos]) => {
-        return {profile, score: calculateScore(profile, repos)};
+        return (profile&&repos) ? {profile, score: calculateScore(profile, repos)} : null;
     })
 }
 
@@ -48,5 +46,5 @@ const sortPlayers = (players) => players.sort((a,b) => b.score - a.score)
 export const makeBattle = (players) => {
     return Promise.all(players.map(getUserData))
         .then(sortPlayers)
-        .catch(error => handleError(error, () => console.log("Some error appeared")))
+        .catch(() => console.log("Data not retrieved", players))
 }
